@@ -32,13 +32,13 @@ $CXX -I. -I$EXTENSION -DPHP_ATOM_INC -I$EXTENSION/include -I$EXTENSION/main -I$E
 cc -shared  .libs/wasm.o  -L$EXTENSION/. -lwasmer_runtime_c_api  -Wl,-rpath -Wl,$EXTENSION/. -Wl,-soname -Wl,wasm.so -o .libs/wasm.so -fPIC
 sudo make install-modules
 
-# write extension=wasm.so into docker-php-ext-wasm.ini file
-cd /usr/local/etc/php/conf.d && sudo touch docker-php-ext-wasm.ini && sudo chmod 777 docker-php-ext-wasm.ini \
-    && echo 'extension=wasm.so' > docker-php-ext-wasm.ini
-
 # run test 
 # if you are in China, you could un-comment the command in next line
 composer config repo.packagist composer https://mirrors.aliyun.com/composer/
 export PATH="$HOME/.cargo/bin:$PATH"
 composer install --no-progress
 vendor/bin/atoum --php 'php -d extension=wasm' --directories tests/units --force-terminal --use-dot-report
+
+# write extension=wasm.so into docker-php-ext-wasm.ini file
+cd /usr/local/etc/php/conf.d && sudo touch docker-php-ext-wasm.ini && sudo chmod 777 docker-php-ext-wasm.ini \
+    && echo 'extension=wasm.so' > docker-php-ext-wasm.ini
