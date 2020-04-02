@@ -1,4 +1,7 @@
 # docker env for php-ext-wasm
+## reference
+# * https://circleci.com/gh/wasmerio/php-ext-wasm
+
 FROM circleci/php:latest
 
 RUN git clone https://github.com/wasmerio/php-ext-wasm.git $HOME/project \
@@ -31,3 +34,4 @@ RUN git clone https://github.com/wasmerio/php-ext-wasm.git $HOME/project \
     && echo 'extension=wasm.so' > docker-php-ext-wasm.ini
 
 CMD ["/bin/sh"]
+
