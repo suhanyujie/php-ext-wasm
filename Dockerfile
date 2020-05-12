@@ -29,7 +29,6 @@ RUN git clone https://github.com/wasmerio/php-ext-wasm.git $HOME/project \
     && sudo make install-modules \
     && export PATH="$HOME/.cargo/bin:$PATH" \
     && cd $HOME/project \
-    && composer config repo.packagist composer https://mirrors.aliyun.com/composer/ && composer install --no-progress \
     && cd /usr/local/etc/php/conf.d && sudo touch docker-php-ext-wasm.ini && sudo chmod 777 docker-php-ext-wasm.ini \
     && echo 'extension=wasm.so' > docker-php-ext-wasm.ini
 
